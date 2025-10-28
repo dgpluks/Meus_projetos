@@ -35,13 +35,13 @@ int verificar (char ***mat){
 	}
 	if((*mat)[16][7] != ' ' && (*mat)[16][7] == (*mat)[10][19] && (*mat)[10][19] == (*mat)[4][31]){
 		return qual((*mat)[16][7]);
-	}else if((*mat)[4][7] != ' ' && (*mat)[4][7] == (*mat)[10][19] && (*mat)[16][31]){
+	}else if((*mat)[4][7] != ' ' && (*mat)[4][7] == (*mat)[10][19] && (*mat)[16][31] == (*mat)[4][31]){
 		return qual((*mat)[4][7]);
 	}
 	return 0;
 }
 bool inserir(char ****mat, int pos, bool tipo, int i){
-	system("clear");
+//	system("clear");
 	if((*mat)[i][4+6*(pos/3)][7+12*(pos%3)] == ' '){
 		for(; i < 9; i++)
 			x_o(tipo, &((*mat)[i]), 2+6*(pos/3), 5+12*(pos%3));
@@ -50,7 +50,7 @@ bool inserir(char ****mat, int pos, bool tipo, int i){
 	return true;
 }
 int main(){
-	system("clear");
+//	system("clear");
 	char ***jogo = malloc(sizeof(char**)*9);
 	for(int i = 0; i < 9; i++){
 		jogo[i] = malloc(sizeof(char*)*17);
@@ -72,7 +72,8 @@ int main(){
 	int vencedor = 0;
 	bool tipo = true;  //true = X false = O
 	char insert = ' ';
-	for(int i = 0; i < 9 && vencedor == 0; i++){
+	int i = 0;
+	for(; i < 9 && vencedor == 0; i++){
 		for(int j = 0;j < 17 && vencedor == 0; j++ ){
 			for(int k = 0; k < 35 && vencedor == 0; k++){
 				printf("%c", jogo[i][j][k]);
@@ -95,12 +96,25 @@ int main(){
 				vencedor = verificar(&(jogo[i]));
 			}
 		}else{
-			system("clear");
+//			system("clear");
 			printf("\033[1;31m!!!DIGITE UM VALOR VÁLIDO (A - I)!!!\033[0m\n");
 			i--;
 		}
 		tipo = !tipo;
 	}	
+	for(int j = 0;j < 17; j++ ){
+        	for(int k = 0; k < 35; k++){
+                	if(j == 5 && k == 11 || j == 11 && k == 11 || j == 5 && k == 23 || j == 11 & k == 23){
+				jogo[i][j][k] = '+';
+                        }else if(j == 5 || j == 11){
+				jogo[i][j][k] = '-';
+                        }else if(k == 11 || k == 23){
+				jogo[i][j][k] = '|';
+                        }else{
+				jogo[i][j][k] = ' ';
+                        }
+                }
+        }
 	int x = -1;
 	scanf(" %d", &x);
 	while(x != 0){
