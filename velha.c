@@ -35,7 +35,7 @@ int verificar (char ***mat){
 	}
 	if((*mat)[16][7] != ' ' && (*mat)[16][7] == (*mat)[10][19] && (*mat)[10][19] == (*mat)[4][31]){
 		return qual((*mat)[16][7]);
-	}else if((*mat)[4][7] != ' ' && (*mat)[4][7] == (*mat)[10][19] && (*mat)[16][31] == (*mat)[4][31]){
+	}else if((*mat)[4][7] != ' ' && (*mat)[4][7] == (*mat)[10][19] && (*mat)[16][31] == (*mat)[16][31]){
 		return qual((*mat)[4][7]);
 	}
 	return 0;
@@ -57,7 +57,7 @@ int main(){
 		for(int j = 0;j < 17; j++ ){
 			jogo[i][j] = malloc(sizeof(char)*35);
 			for(int k = 0; k < 35; k++){
-				if(j == 5 && k == 11 || j == 11 && k == 11 || j == 5 && k == 23 || j == 11 & k == 23){
+				if(j == 5 && k == 11 || j == 11 && k == 11 || j == 5 && k == 23 || j == 11 && k == 23){
 					jogo[i][j][k] = '+';
 				}else if(j == 5 || j == 11){
 					jogo[i][j][k] = '-';
@@ -131,7 +131,7 @@ int main(){
 			}
 			printf("\n");
 		}
-		scanf("%d", &x);
+		scanf(" %d", &x);
 	}
 }
 
