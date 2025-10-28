@@ -43,7 +43,7 @@ int verificar (char ***mat){
 bool inserir(char ****mat, int pos, bool tipo, int i){
 	system("clear");
 	if((*mat)[i][4+6*(pos/3)][7+12*(pos%3)] == ' '){
-		for(; i < 9; i++)
+		for(; i < 10; i++)
 			x_o(tipo, &((*mat)[i]), 2+6*(pos/3), 5+12*(pos%3));
 		return false;
 	}
@@ -86,20 +86,20 @@ int main(){
 			if(insert >= 'a' && insert <= 'i'){
 				if(inserir(&jogo, (int)(insert - 'a'), tipo, i)){
 					i--;
-					printf("A posição %c ja está preenchida\n", insert);
+					printf("A posicao %c ja está preenchida\n", insert);
 				}else{
 					vencedor = verificar(&(jogo[i]));
 				}
 			}else if(insert>= 'A' && insert <= 'I'){
 				if(inserir(&jogo, (int)(insert - 'A'), tipo, i)){
 					i--;
-					printf("A posição %c ja está preenchida\n", insert);
+					printf("A posicao %c ja está preenchida\n", insert);
 				}else{
 					vencedor = verificar(&(jogo[i]));
 				}
 			}else{
 				system("clear");
-				printf("\033[1;31m!!!DIGITE UM VALOR VÁLIDO (A - I)!!!\033[0m\n");
+				printf("\033[1;31m!!!DIGITE UM VALOR VALIDO (A - I)!!!\033[0m\n");
 				i--;
 			}
 			tipo = !tipo;
@@ -110,7 +110,7 @@ int main(){
 			printf("VENCEDOR FOI O O\n");
 		else
 				printf("DEU VELHA\n");
-		if(i == 10)
+		if(i >= 10)
 			i--;
 		for(int j = 0;j < 17; j++ ){
 			for(int k = 0; k < 35; k++){
@@ -120,9 +120,9 @@ int main(){
 		}
 		printf("Recomeçar -->  Digite -2\nFinalizar --> Digite -1\nAnalizar jogadas --> Digite valores de 1-10\n");
 		scanf(" %d", &x);
-		while(x != -1 && x != -2 && x <= i){
+		while(x != -1 && x != -2){
 			system("clear");
-			if(!(x >i || x < 0)){
+			if(x <= i+1 && x > 0){
 				if(x == i){
 					if(vencedor == 1)
 						printf("VENCEDOR FOI O X\n");
@@ -133,12 +133,12 @@ int main(){
 				}
 				for(int j = 0;j < 17; j++ ){
 					for(int k = 0; k < 35; k++){
-						printf("%c", jogo[x][j][k]);
+						printf("%c", jogo[x-1][j][k]);
 					}
 					printf("\n");
 				}
 			}else{
-				printf("Digite um valor válido\n");
+				printf("Digite um valor valido\n");
 			}	
 			printf("Recomeçar -->  Digite -2\nFinalizar --> Digite -1\nAnalizar jogadas --> Digite valores de 1-10\n");
 			scanf(" %d", &x);
@@ -165,4 +165,3 @@ int main(){
            |             |
            |             |  
 	 */
-
